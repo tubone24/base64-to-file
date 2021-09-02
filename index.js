@@ -4,8 +4,8 @@ const path = require('path');
 
 // get input parameter values from config
 var fileName;
-if (core.getInput('fileDir', {required: false})) {
-  fileName = path.join(core.getInput('fileDir'), core.getInput('fileName', {required: false}));
+if (path.isAbsolute(core.getInput('fileName'))) {
+  fileName = core.getInput('fileName')
 } else {
   fileName = path.join(process.env.RUNNER_TEMP,core.getInput('fileName'));
 }
